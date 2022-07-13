@@ -1,3 +1,6 @@
+"""
+high level support for doing this and that.
+"""
 from sys import argv
 from commands import IncorrectEmails, SearchedEmails, GroupByDomain, EmailsNotInLogs
 
@@ -15,28 +18,30 @@ if len(argv) > 1:
     match argv[1]:
         case '--incorrect-emails' | '-ic':
             command = IncorrectEmails()
-            command.getEmailsFromFile(EMAIL_FILES)
-            command.getIncorrectEmails()
+            command.get_emails_from_file(EMAIL_FILES)
+            command.get_incorrect_emails()
         case '--search' | '-s':
             try:
                 search = argv[2]
                 command = SearchedEmails()
-                command.getEmailsFromFile(EMAIL_FILES)
-                command.getSearchedEmails(search)
+                command.get_emails_from_file(EMAIL_FILES)
+                command.get_searched_emails(search)
             except IndexError:
                 print('No search given\nUsage --search <search>')
         case '--group-by-domain' | '-gbd':
             command = GroupByDomain()
-            command.getEmailsFromFile(EMAIL_FILES)
-            command.getGroupedEmails()
+            command.get_emails_from_file(EMAIL_FILES)
+            command.get_grouped_emails()
         case '--find-emails-not-in-logs' | '-feil':
             try:
                 logFile = argv[2]
                 command = EmailsNotInLogs()
-                command.getEmailsNotInLogFile(logFile, EMAIL_FILES)
+                command.get_emails_not_in_log_file(logFile, EMAIL_FILES)
             except IndexError:
-                print('No log file given\nUsage --find-emails-not-in-logs path_to_logs_file <log_file_path>')
+                print('No log file given\nUsage'
+                      ' --find-emails-not-in-logs path_to_logs_file <log_file_path>')
             except FileNotFoundError:
-                print('File not found\nUsage --find-emails-not-in-logs path_to_logs_file <log_file_path>')
+                print('File not found\nUsage'
+                      ' --find-emails-not-in-logs path_to_logs_file <log_file_path>')
         case _:
             print('Command not found')

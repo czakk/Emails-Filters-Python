@@ -58,7 +58,7 @@ def save_to_file(file_name, header=None):
         def in_wrap(self, *args, **kwargs):
             with open(f'results/{file_name}', 'w', encoding='UTF-8') as file:
                 result = func(self, *args, **kwargs)
-                file.write(f'{header.format(*args, **kwargs)} ({len(result)})\n')
+                file.write(f'{header.format(*args} ({len(result)})\n')
                 file.write('\n'.join(result))
             return func(self, *args, **kwargs)
         return in_wrap

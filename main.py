@@ -1,6 +1,3 @@
-"""
-high level support for doing this and that.
-"""
 from sys import argv
 from commands import IncorrectEmails, SearchedEmails, GroupByDomain, EmailsNotInLogs
 
